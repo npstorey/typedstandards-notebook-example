@@ -1,0 +1,23 @@
+# Not a package: the example's scripts and tests, run with uv. `typedstandards` is pinned
+# exactly, as the CLI and host-core are pinned in package.json.
+[project]
+name = "typedstandards-notebook-example"
+version = "0.0.0"
+description = "A worked example: a notebook's files signed from Python with typedstandards, served through the host template."
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = ["typedstandards==0.1.0"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"

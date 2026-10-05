@@ -1,1 +1,7 @@
 node_modules/
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+# An op run env file holds secret references, not values; it still stays out of the repository.
+*.env

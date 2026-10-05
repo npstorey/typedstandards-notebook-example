@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>typedstandards-host-template</title>
+<title>typedstandards-notebook-example</title>
 <style>
   body { font: 16px/1.5 system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; }
   code { font-size: 0.9em; }
@@ -12,15 +12,20 @@
 <body>
 <!-- Written by hand, not generated: host-core builds the files this page links to,
      not the page. It loads nothing from any other host. -->
-<h1>typedstandards-host-template</h1>
-<p>This site serves signed Typed Standards records. Each record's bundle carries the
-signed package, and any verifier can check it.</p>
+<h1>typedstandards-notebook-example</h1>
+<p>A worked example of signing a notebook's files from Python with the
+<code>typedstandards</code> package, and serving the signed records with the
+Typed Standards host template. Each record's bundle carries the signed package,
+and any verifier can check it.</p>
+
+<p>The example's own records are not signed yet. Until they are, this site serves
+one placeholder record carried over from the host template.</p>
 
 <h2>Records</h2>
 <ul>
   <li>
-    <strong>A first signed note</strong> (active):
-    <a href="https://typedstandards.org/verify?url=https%3A%2F%2Fhost-template.typedstandards.org%2Fbundles%2Ffirst-note.bundle.json">verify this record</a>,
+    <strong>A first signed note</strong> (active, the host template's placeholder):
+    <a href="https://typedstandards.org/verify?url=https%3A%2F%2Fnotebook.typedstandards.org%2Fbundles%2Ffirst-note.bundle.json">verify this record</a>,
     <a href="bundles/first-note.bundle.json">the bundle</a>
   </li>
 </ul>
