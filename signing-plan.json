@@ -1,0 +1,24 @@
+{
+  "$comment": "What scripts/sign_records.py signs: the README's 'The signing plan' describes every field. Until the example's own records are added, it lists only the host template's placeholder note, already signed under the template's throwaway key, so a run signs nothing.",
+  "producerProfile": "scripted-recomputation/notebook-example",
+  "captureMethod": "script-run",
+  "publisher": {
+    "bindingTier": "pseudonymous",
+    "displayName": "typedstandards-notebook-example"
+  },
+  "corroborator": {
+    "bindingTier": "pseudonymous",
+    "displayName": "typedstandards-notebook-example corroborator"
+  },
+  "records": [
+    {
+      "$comment": "The host template's placeholder: host-core serves no host with zero records. Removed when the example's own records are added.",
+      "name": "first-note",
+      "role": "note",
+      "title": "A first signed note",
+      "file": "records/first-note.md",
+      "prompt": "Sign the note as a file read from disk."
+    }
+  ],
+  "corroborations": []
+}
