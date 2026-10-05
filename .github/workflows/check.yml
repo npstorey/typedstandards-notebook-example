@@ -5,7 +5,13 @@
 #   - typedstandards-host verify verifies every served record offline, and prints exactly
 #     verify-output.txt;
 #   - display.mjs reads every record through host-policy.json, and none is refused.
-# The job signs nothing: it holds no key and reads no repository secret.
+# And in a second job, verify-python, on Node 24 and Python 3.12 through uv:
+#   - uv sync --locked installs the exact versions uv.lock pins, typedstandards among them;
+#   - scripts/verify_bundles.py runs typedstandards.verify over every bundle docs/records.json
+#     lists, and fails unless each reads ok;
+#   - uv run pytest runs the example's tests, which sign synthetic records under seeds they
+#     generate and discard.
+# Neither job signs anything of the example's: they hold no key and read no repository secret.
 # Each action is pinned to a full commit SHA, measured with git ls-remote, with its tag in a comment.
 name: check
 
@@ -36,3 +42,26 @@ jobs:
           npx typedstandards-host verify > "$RUNNER_TEMP/verify-output.txt"
           diff verify-output.txt "$RUNNER_TEMP/verify-output.txt"
       - run: node display.mjs
+
+  verify-python:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          # Node runs the CLI the typedstandards wheel carries, and host-core for the tests.
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.11.25"
+          python-version: "3.12"
+          enable-cache: false
+      - run: node --version && uv --version
+      - run: uv sync --locked
+      - name: typedstandards.verify over every bundle docs/records.json lists
+        run: uv run scripts/verify_bundles.py
+      - run: uv run pytest
