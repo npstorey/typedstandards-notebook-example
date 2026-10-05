@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "$comment": "The records this template serves: one example record.",
-  "host": "https://host-template.typedstandards.org/",
-  "trustRegistryUrl": "https://host-template.typedstandards.org/.well-known/typed-publisher.json",
+  "$comment": "The records this example serves. Until its own records are signed, it serves one: the host template's placeholder note, signed under the template's throwaway key.",
+  "host": "https://notebook.typedstandards.org/",
+  "trustRegistryUrl": "https://notebook.typedstandards.org/.well-known/typed-publisher.json",
   "records": [
     {
       "name": "first-note",
